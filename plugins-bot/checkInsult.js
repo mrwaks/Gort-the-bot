@@ -1,12 +1,15 @@
 'use strict';
 
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
 export function checkInsult(client) {
     client.on('messageCreate', message => {
         if (message.author.bot) return;
 
         const messageInput = message.content.slice(' ').normalize('NFD').replace(/[\u0300-\u036f]/gmi, '');
 
-        let insults = ['connard', 'salope', 'pute', 'petasse', 'poufiasse', 'pd'];
+        const insults = require('../data-json/insults.json').insults.split(' ');
         let insultSaid = [];
 
         let botMessage = '';
