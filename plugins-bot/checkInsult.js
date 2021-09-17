@@ -4,7 +4,7 @@ export function checkInsult(client) {
     client.on('messageCreate', message => {
         if (message.author.bot) return;
 
-        const messageInput = message.content.slice(' ');
+        const messageInput = message.content.slice(' ').normalize('NFD').replace(/[\u0300-\u036f]/gmi, '');
 
         let insults = ['connard', 'salope', 'pute', 'petasse', 'poufiasse', 'pd'];
         let insultSaid = [];
