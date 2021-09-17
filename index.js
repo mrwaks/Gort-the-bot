@@ -1,5 +1,5 @@
 'use strict';
-
+// Dependencies:
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 require('dotenv').config();
@@ -8,6 +8,7 @@ require('dotenv').config();
 import { calculSum } from './plugins-bot/calcul-sum.js';
 import { calculMB } from './plugins-bot/calcul_mb.js';
 import { checkInsult } from './plugins-bot/checkInsult.js';
+import { getBitcoin } from './plugins-bot/get_bitcoin.js';
 /*_____________________________________________________________*/
 
 const {
@@ -28,3 +29,4 @@ const prefix = '!';
 calculSum(client, prefix);
 calculMB(client, prefix);
 checkInsult(client);
+getBitcoin(client, prefix);
