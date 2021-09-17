@@ -14,7 +14,7 @@ export function checkInsult(client) {
         for (let i in insults) {
             if (new RegExp(insults[i], 'gi').test(messageInput)) {
                 insultSaid.push(messageInput.match(new RegExp(insults[i], 'gi')));
-                botMessage = `Vous avez prononcé(e) ${insultSaid.length} injures !\nJe vous colle un avertissement !\nAu troisième avertissement vous serez banni(e) du serveur.`;
+                botMessage = `${message.author.username},vous avez prononcé(e) ${insultSaid.length} injures !\nJe vous colle un avertissement !\nAu troisième avertissement vous serez banni(e) du serveur.`;
             }
         }
 
