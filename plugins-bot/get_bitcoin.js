@@ -1,14 +1,11 @@
 'use strict';
 
 import axios from 'axios';
-import moment from 'moment';
 
 // Faire correspondre la demande args de monnaie dans ce tableau pour la reponse (response.data.EUR ou response.data.USD etc...) rajoutez toutes les monnaies possibles.
 let money = ['EUR', 'USD'];
 
 export function getBitcoin(client, prefix) {
-    moment.locale('fr');
-    const date = moment().format('dddd Do MMMM YYYY');
     axios.get('https://www.blockchain.com/ticker')
     .then(response => {
         client.on('messageCreate', message => {
