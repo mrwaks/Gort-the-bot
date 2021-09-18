@@ -8,7 +8,7 @@ require('dotenv').config();
 import { calculSum } from './plugins-bot/calcul-sum.js';
 import { calculMB } from './plugins-bot/calcul_mb.js';
 import { checkInsult } from './plugins-bot/checkInsult.js';
-import { getBitcoin } from './plugins-bot/get_bitcoin.js';
+import { getWeather } from './plugins-bot/get_weather.js';
 /*_____________________________________________________________*/
 
 const {
@@ -29,4 +29,4 @@ const prefix = '!';
 calculSum(client, prefix);
 calculMB(client, prefix);
 checkInsult(client);
-getBitcoin(client, prefix);
+getWeather(client, prefix);
