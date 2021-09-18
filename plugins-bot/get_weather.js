@@ -3,12 +3,6 @@
 import axios from 'axios';
 
 export function getWeather(client, prefix) {
-    const date = new Date();
-    const hours = date.getHours();
-    const timeDay = {
-        hello1: hours < 18 && hours > 6 ? `Bonjour` : 'Bonsoir',
-        hello2: hours < 18 && hours > 6 ? `Bonne journée !` : 'Bonne soirée !',
-    }
     client.on('messageCreate', message => {
         if (message.author.bot) return;
         if (!message.content.startsWith(prefix)) return;
@@ -25,6 +19,12 @@ export function getWeather(client, prefix) {
 
             axios.get(url)
                 .then(response => {
+                    const date = new Date();
+                    const hours = date.getHours();
+                    const timeDay = {
+                        hello1: hours < 18 && hours > 6 ? `Bonjour` : 'Bonsoir',
+                        hello2: hours < 18 && hours > 6 ? `Bonne journée !` : 'Bonne soirée !',
+                    }
                     const temp = parseFloat(response.data.main.temp).toFixed(0);
                     const tempMin = parseFloat(response.data.main.temp_min).toFixed(0);
                     const tempMax = parseFloat(response.data.main.temp_max).toFixed(0);
@@ -43,6 +43,7 @@ export function getWeather(client, prefix) {
                         }
                     }
                     let botMessage = `${timeDay.hello1} ${username} !\nLa température sur ${city} est de ${temp}°C\nLe temps est ${mainWeather()}\nLa température ressentie est de ${feelsLike}°C\nTempérature minimale: ${tempMin}°C\nTempérature maximale: ${tempMax}°C\n${timeDay.hello2}`;
+                    console.log(timeDay.hello2);
                     message.reply(botMessage);
                 })
                 .catch(error => console.log(error));
