@@ -1,6 +1,14 @@
 'use strict';
 
 import axios from 'axios';
+import {
+    createRequire
+} from 'module';
+const require = createRequire(
+    import.meta.url);
+const dataWeather = require('../data-json/weather_description.json');
+let weather = [dataWeather.description];
+weather = weather[0];
 
 export function getWeather(client, prefix) {
     client.on('messageCreate', message => {
@@ -29,20 +37,14 @@ export function getWeather(client, prefix) {
                     const tempMin = parseFloat(response.data.main.temp_min).toFixed(0);
                     const tempMax = parseFloat(response.data.main.temp_max).toFixed(0);
                     const feelsLike = parseInt(response.data.main.feels_like);
-                    const mainWeather = () => {
-                        if ((/clear sky/i).test(response.data.weather[0].description)) {
-                            return 'ensoleillé 🌞';
-                        } else if ((/few clouds/i).test(response.data.weather[0].description)) {
-                            return 'peu nuageux ⛅'
-                        } else if ((/scattered clouds/i).test(response.data.weather[0].description) || (/broken clouds/i).test(response.data.weather[0].description)) {
-                            return 'nuageux ☁️';
-                        } else if ((/rain/i).test(response.data.weather[0].main)) {
-                            return 'pluvieux 🌧️';
-                        } else if ((/snow/i).test(response.data.weather[0].description)) {
-                            return 'enneigé ❄️';
+                    const describeWeather = () => {
+                        for (let i in weather) {
+                            if (response.data.weather[0].description === weather[i][0]) {
+                                return weather[i][1];
+                            }
                         }
                     }
-                    let botMessage = `${timeDay.hello1} ${username} !\nLa température sur ${city} est de ${temp}°C\nLe temps est ${mainWeather()}\nLa température ressentie est de ${feelsLike}°C\nTempérature minimale: ${tempMin}°C\nTempérature maximale: ${tempMax}°C\n${timeDay.hello2}`;
+                    let botMessage = `${timeDay.hello1} ${username} !\nLa température sur ${city} est de ${temp}°C\n${describeWeather()}\nLa température ressentie est de ${feelsLike}°C\nTempérature minimale: ${tempMin}°C\nTempérature maximale: ${tempMax}°C\n${timeDay.hello2}`;
                     console.log(timeDay.hello2);
                     message.reply(botMessage);
                 })
