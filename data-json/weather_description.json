@@ -1,9 +1,9 @@
 {
     "description": [
-        ["clear sky", "Ciel dégagé 🌞"],
-        ["few clouds", "Légerement nuageux 🌤️"],
-        ["scattered clouds", "Peu nuageux 🌤️"],
-        ["broken clouds", "Moyennement nuageux 🌤️"],
+        ["clear sky", "Ciel dégagé"],
+        ["few clouds", "Légerement nuageux ☁️"],
+        ["scattered clouds", "Peu nuageux ☁️"],
+        ["broken clouds", "Moyennement nuageux ☁️"],
         ["overcast clouds", "Nuageux ☁️"],
 
         ["light rain", "Pluie légère 🌧"],

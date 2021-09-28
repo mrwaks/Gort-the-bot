@@ -45,7 +45,6 @@ export function getWeather(client, prefix) {
                         }
                     }
                     let botMessage = `${timeDay.hello1} ${username} !\nLa température sur ${city} est de ${temp}°C\n${describeWeather()}\nLa température ressentie est de ${feelsLike}°C\nTempérature minimale: ${tempMin}°C\nTempérature maximale: ${tempMax}°C\n${timeDay.hello2}`;
-                    console.log(timeDay.hello2);
                     message.reply(botMessage);
                 })
                 .catch(error => console.log(error));
